@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "344571389721",
+    "project_id": "bragivino",
+    "storage_bucket": "bragivino.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:344571389721:android:36c4faff1fb04e359ec788",
+        "android_client_info": {
+          "package_name": "com.example.bragivino"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-HSM89NH1xBmOGytcHeB3sgzjkfzj4NM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
