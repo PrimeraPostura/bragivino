@@ -32,3 +32,6 @@ dev_dependencies:
 # Generación de código
 flutter:
   uses-material-design: true
+assets:
+  - assets\vino.jpg
+

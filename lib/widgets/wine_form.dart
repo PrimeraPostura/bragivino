@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 class WineForm extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController yearController = TextEditingController();
-  final TextEditingController ratingController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController photoController = TextEditingController();
+  final void Function(String, int, String) onAddWine;
 
-  final void Function(String, int, String, double) onAddWine;
-
-  // Constructor para pasar la función de agregar vino
-  WineForm({Key? key, required this.onAddWine}) : super(key: key);
+  WineForm({required this.onAddWine});
 
   @override
   Widget build(BuildContext context) {
@@ -30,28 +27,19 @@ class WineForm extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
             TextField(
-              controller: ratingController,
-              decoration: const InputDecoration(labelText: 'Valoración (1-5)'),
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
-            ),
-            TextField(
-              controller: descriptionController,
-              decoration: const InputDecoration(labelText: 'Nota de Cata'),
-              maxLines: 3,
+              controller: photoController,
+              decoration:
+                  const InputDecoration(labelText: 'Foto de la Etiqueta (URL)'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Llama a la función de agregar vino
+                // Llama la función para agregar el vino
                 final name = nameController.text;
                 final year = int.tryParse(yearController.text) ?? 0;
-                final rating = double.tryParse(ratingController.text) ?? 0;
-                final description = descriptionController.text;
-                if (name.isNotEmpty &&
-                    year > 0 &&
-                    rating > 0 &&
-                    description.isNotEmpty) {
-                  onAddWine(name, year, description, rating);
+                final photo = photoController.text;
+                if (name.isNotEmpty && year > 0 && photo.isNotEmpty) {
+                  onAddWine(name, year, photo);
                   Navigator.pop(context); // Regresa a la pantalla anterior
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(

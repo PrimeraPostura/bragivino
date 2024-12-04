@@ -1,37 +1,30 @@
-import 'package:bragivino/screens/add_wine_screen.dart';
-import 'package:bragivino/screens/home_screens.dart';
-import 'package:bragivino/screens/login_screen.dart';
-import 'package:bragivino/screens/my_wines_screen.dart';
-import 'package:bragivino/screens/statistics_screen.dart';
-import 'package:bragivino/screens/wines_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:bragivino/login/login_screen.dart';
+import 'package:bragivino/screens/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'firebase_options.dart'; // Importa el archivo de configuración de Firebase
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart'; // Importa el archivo firebase_options.dart
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions
-        .currentPlatform, // Usamos la configuración generada de Firebase
+        .currentPlatform, // Asegúrate de que aquí se pasen las opciones correctas
   );
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/login', // La pantalla inicial es de login
+      title: 'Bragivino',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: LoginScreen(), // Pantalla de Login por defecto
       routes: {
-        '/login': (context) => const LoginScreen(),
-        '/home': (context) => const HomeScreen(),
-        '/wines': (context) => const WinesScreen(),
-        '/add_wine': (context) => const AddWineScreen(),
-        '/my_wines': (context) => const MyWinesScreen(),
-        '/statistics': (context) => const StatisticsScreen(),
+        '/home': (context) =>
+            HomeScreen(), // Ruta a la pantalla de inicio después de login
       },
     );
   }
