@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _screens = [
     MyWinesScreen(), // Pantalla "Mis Vinos"
     CatalogScreen(), // Pantalla "Catálogo"
-    EstadisticasScreen(), // Pantalla "Estadísticas"
+    StatisticsScreen(), // Pantalla "Estadísticas"
   ];
 
   void _onItemTapped(int index) {

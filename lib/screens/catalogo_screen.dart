@@ -210,7 +210,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
                 var wine = _filterWines()[index];
 
                 return ListTile(
-                  leading: Image.asset('vino.jpg', width: 50, height: 50),
+                  leading: Image.asset('assets/vino.jpg'),
                   title: Text(wine['name']),
                   subtitle: Text(
                     '${wine['type']} - ${wine['region']}',

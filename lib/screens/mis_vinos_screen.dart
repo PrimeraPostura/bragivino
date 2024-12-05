@@ -78,7 +78,7 @@ class _MyWinesScreenState extends State<MyWinesScreen> {
                     var wine = _myWines[index];
 
                     return ListTile(
-                      leading: Image.asset('vino.jpg', width: 50, height: 50),
+                      leading: Image.asset('assets/vino.jpg'),
                       title: Text(wine['name']),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
