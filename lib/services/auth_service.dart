@@ -10,6 +10,9 @@ class AuthService {
         email: email,
         password: password,
       );
+
+      // Enviar correo de verificación
+      await userCredential.user?.sendEmailVerification();
       return userCredential.user;
     } catch (e) {
       throw e;
@@ -23,6 +26,14 @@ class AuthService {
         email: email,
         password: password,
       );
+
+      // Verificar si el correo ha sido confirmado
+      if (userCredential.user?.emailVerified == false) {
+        throw FirebaseAuthException(
+            code: 'email-not-verified',
+            message: 'Correo electrónico no verificado');
+      }
+
       return userCredential.user;
     } catch (e) {
       throw e;
@@ -37,6 +48,26 @@ class AuthService {
   // Cerrar sesión
   Future<void> signOut() async {
     await _auth.signOut();
+  }
+
+  // Eliminar cuenta
+  Future<void> deleteAccount() async {
+    try {
+      User? user = _auth.currentUser;
+      if (user != null) {
+        await user.delete(); // Eliminar la cuenta
+      }
+    } catch (e) {
+      throw e; // Maneja el error si ocurre
+    }
+  }
+
+  // Verificar si el correo está verificado
+  Future<void> verifyEmail() async {
+    User? user = _auth.currentUser;
+    if (user != null && !user.emailVerified) {
+      await user.sendEmailVerification();
+    }
   }
 
   // Obtener el usuario actual
